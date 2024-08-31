@@ -1,5 +1,8 @@
 {
   "name": "hono-docker",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts"
   },
