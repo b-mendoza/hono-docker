@@ -4,7 +4,9 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "build": "rsbuild build",
+    "dev": "tsx ./src/index.ts",
+    "start": "node ./dist/index.js"
   },
   "dependencies": {
     "@hono/node-server": "1.12.2",
