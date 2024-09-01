@@ -1,8 +1,29 @@
-```
-npm install
-npm run dev
+# Rsbuild Project
+
+## Setup
+
+Install the dependencies:
+
+```bash
+pnpm install
 ```
 
+## Get Started
+
+Start the dev server:
+
+```bash
+pnpm dev
 ```
-open http://localhost:3000
+
+Build the app for production:
+
+```bash
+pnpm build
+```
+
+Preview the production build locally:
+
+```bash
+pnpm start
 ```
