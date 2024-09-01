@@ -7,7 +7,7 @@ app.get('/', (c) => {
   return c.text('Hello Hono!');
 });
 
-const port = 3000;
+const port = Number.parseInt(process.env['PORT'] ?? '4000', 10);
 
 console.log(`Server is running on port ${port}`);
 
