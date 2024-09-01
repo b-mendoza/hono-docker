@@ -4,7 +4,7 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "esbuild ./src/index.ts --bundle --platform=node --outfile=./dist/index.js --format=esm",
+    "build": "esbuild ./src/index.ts --bundle --format=esm --minify --platform=node --outfile=./dist/index.js",
     "dev": "tsx watch --clear-screen=false ./src/index.ts",
     "start": "node ./dist/index.js"
   },
