@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "rsbuild build",
-    "dev": "tsx ./src/index.ts",
+    "dev": "tsx watch --clear-screen=false ./src/index.ts",
     "start": "node ./dist/index.js"
   },
   "dependencies": {
