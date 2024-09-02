@@ -12,6 +12,7 @@
 # - Add a cache for the dist folder
 # - Do not use the root user
 # - Use a non-root user
+# - Reduce the size of the final image
 
 FROM node:20.17.0-bullseye-slim AS base
 
@@ -42,21 +43,17 @@ COPY --from=base /usr/local/bin /usr/local/bin
 COPY --from=base /usr/local/lib/node_modules /usr/local/lib/node_modules
 
 COPY --from=base /app/package.json /app/package.json
-
+COPY --from=build /app/dist /app/dist
 COPY --from=prod-deps /app/node_modules /app/node_modules
 
-COPY --from=build /app/dist /app/dist
-
-# RUN ln -s /usr/local/bin/node /usr/bin/node && \
-#     ln -s /usr/local/bin/npm /usr/bin/npm && \
-#     ln -s /usr/local/bin/pnpm /usr/bin/pnpm
-
 RUN ln -s /usr/local/bin/node /usr/bin/node && \
-    ln -s /usr/local/bin/npx /usr/bin/npx
-
-RUN ["npx", "playwright", "install", "--with-deps", "chromium"]
-
-# ENV PATH="/usr/local/bin:${PATH}"
+    ln -s /usr/local/bin/npx /usr/bin/npx && \
+    apt-get update -y && \
+    npx playwright install --with-deps chromium && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    apt-get autoclean
 
 EXPOSE $PORT
 
