@@ -48,7 +48,7 @@ COPY --from=prod-deps /app/node_modules /app/node_modules
 
 RUN ln -s /usr/local/bin/node /usr/bin/node && \
     ln -s /usr/local/bin/npx /usr/bin/npx && \
-    apt-get update -y && \
+    apt-get update && \
     npx playwright install --with-deps chromium && \
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y && \
