@@ -6,8 +6,7 @@ await esbuild.build({
 
   entryPoints: ['./src/index.ts'],
   format: 'esm',
-  inject: ['./other/shim.js'],
-  minify: false,
+  minify: true,
   outfile: './dist/index.js',
   platform: 'node',
   sourcemap: true,
