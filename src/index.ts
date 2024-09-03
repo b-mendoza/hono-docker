@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import UserAgent from 'user-agents';
@@ -61,7 +59,7 @@ app.get('/', async (c) => {
   });
 });
 
-const port = Number.parseInt(process.env['PORT'] ?? '4000', 10);
+const port = Number.parseInt(process.env['PORT'] ?? '3000', 10);
 
 console.log(`Server is running on port ${port}`);
 

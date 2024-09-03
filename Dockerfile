@@ -15,12 +15,10 @@
 # - Reduce the size of the final image
 # - Always pin the versions of dependencies, images, and tools
 
-FROM node:20.17.0-slim AS base
+FROM node:20.17.0-bookworm-slim AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-
-ENV PORT=3000
 
 RUN corepack enable
 
@@ -29,7 +27,7 @@ WORKDIR /app
 
 FROM base AS prod-deps
 
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile --prod
 
 FROM base AS build
 
@@ -56,6 +54,6 @@ RUN ln -s /usr/local/bin/node /usr/bin/node && \
     apt-get clean && \
     apt-get autoclean
 
-EXPOSE $PORT
+EXPOSE 3000
 
 CMD ["node", "./dist/index.js"]

@@ -14,9 +14,6 @@ importers:
       '@playwright/browser-chromium':
         specifier: 1.46.1
         version: 1.46.1
-      dotenv:
-        specifier: 16.4.5
-        version: 16.4.5
       hono:
         specifier: 4.5.10
         version: 4.5.10
@@ -249,10 +246,6 @@ packages:
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
     engines: {node: '>=0.10.0'}
-
-  dotenv@16.4.5:
-    resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
-    engines: {node: '>=12'}
 
   esbuild@0.23.1:
     resolution: {integrity: sha512-VVNz/9Sa0bs5SELtn3f7qhJCDPCF5oMEl5cO9/SSinpE9hbPVvxbd572HH5AKiP7WD8INO53GgfDDhRjkylHEg==}
@@ -594,8 +587,6 @@ snapshots:
       ms: 2.1.2
 
   deepmerge@4.3.1: {}
-
-  dotenv@16.4.5: {}
 
   esbuild@0.23.1:
     optionalDependencies:
