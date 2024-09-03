@@ -26,7 +26,9 @@ app.get('/', async (c) => {
   chromiumWithExtra.use(StealthPlugin());
 
   const browser = await chromiumWithExtra.launch({
-    headless: process.env['NODE_ENV'] === 'production',
+    // headless: process.env['NODE_ENV'] === 'production',
+    headless: true,
+
     slowMo: 500,
   });
 
