@@ -13,6 +13,7 @@
 # - Do not use the root user
 # - Use a non-root user
 # - Reduce the size of the final image
+# - Always pin the versions of dependencies, images, and tools
 
 FROM node:20.17.0-slim AS base
 
@@ -26,7 +27,7 @@ RUN corepack enable
 COPY . /app
 WORKDIR /app
 
-FROM base AS prod-deps 
+FROM base AS prod-deps
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
