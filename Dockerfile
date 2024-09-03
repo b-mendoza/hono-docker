@@ -36,7 +36,7 @@ FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile && \
     pnpm run build
 
-FROM ubuntu:noble-20240801
+FROM debian:bookworm-20240812-slim
 
 WORKDIR /app
 

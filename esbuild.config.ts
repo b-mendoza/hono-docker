@@ -1,7 +1,7 @@
 import * as esbuild from 'esbuild';
 
 await esbuild.build({
-  // bundle: false,
+  // bundle: true,
   // packages: 'bundle',
 
   entryPoints: ['./src/index.ts'],
