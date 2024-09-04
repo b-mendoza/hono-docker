@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@hono/node-server':
         specifier: 1.12.2
-        version: 1.12.2(hono@4.5.10)
+        version: 1.12.2(hono@4.5.11)
       '@playwright/browser-chromium':
         specifier: 1.46.1
         version: 1.46.1
       hono:
-        specifier: 4.5.10
-        version: 4.5.10
+        specifier: 4.5.11
+        version: 4.5.11
       isbot:
         specifier: 5.1.17
         version: 5.1.17
@@ -30,12 +30,12 @@ importers:
         specifier: 2.11.2
         version: 2.11.2(playwright-extra@4.3.6(playwright-core@1.46.1)(playwright@1.46.1))
       user-agents:
-        specifier: 1.1.314
-        version: 1.1.314
+        specifier: 1.1.316
+        version: 1.1.316
     devDependencies:
       '@types/node':
-        specifier: 20.16.3
-        version: 20.16.3
+        specifier: 20.16.4
+        version: 20.16.4
       '@types/user-agents':
         specifier: 1.0.4
         version: 1.0.4
@@ -211,8 +211,8 @@ packages:
   '@types/ms@0.7.34':
     resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
 
-  '@types/node@20.16.3':
-    resolution: {integrity: sha512-/wdGiWRkMOm53gAsSyFMXFZHbVg7C6CbkrzHNpaHoYfsUWPg7m6ZRKtvQjgvQ9i8WT540a3ydRlRQbxjY30XxQ==}
+  '@types/node@20.16.4':
+    resolution: {integrity: sha512-ioyQ1zK9aGEomJ45zz8S8IdzElyxhvP1RVWnPrXDf6wFaUb+kk1tEcVVJkF7RPGM0VWI7cp5U57oCPIn5iN1qg==}
 
   '@types/user-agents@1.0.4':
     resolution: {integrity: sha512-AjeFc4oX5WPPflgKfRWWJfkEk7Wu82fnj1rROPsiqFt6yElpdGFg8Srtm/4PU4rA9UiDUZlruGPgcwTMQlwq4w==}
@@ -291,8 +291,8 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  hono@4.5.10:
-    resolution: {integrity: sha512-az6tdU1U8o/l0v8O37FIQuc+ER/TeD9vHt/qs8JnBDgMxw6Zu5L2AixUyHeXZNcu87r7iYo8Ey85R7IogOINKA==}
+  hono@4.5.11:
+    resolution: {integrity: sha512-62FcjLPtjAFwISVBUshryl+vbHOjg8rE4uIK/dxyR8GpLztunZpwFmfEvmJCUI7xoGh/Sr3CGCDPCmYxVw7wUQ==}
     engines: {node: '>=16.0.0'}
 
   inflight@1.0.6:
@@ -463,8 +463,8 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
-  user-agents@1.1.314:
-    resolution: {integrity: sha512-0yqcVkqIk+f7IZoFzKutywA1Z9gnRhyeEmXDfbxnyDDJ1OXgtzecDOWtA6YguzvaHNqHf9CiTO1Gx+t2Bmd6xg==}
+  user-agents@1.1.316:
+    resolution: {integrity: sha512-Pw3FUX8cYyJf0dkwr1iGRTYSBb7AkKiGF5LzqYfu/8G+fk+wg6XVrQRm249QGkr/9QUwEkeSCB+duxnfKB3C2A==}
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
@@ -543,9 +543,9 @@ snapshots:
   '@esbuild/win32-x64@0.23.1':
     optional: true
 
-  '@hono/node-server@1.12.2(hono@4.5.10)':
+  '@hono/node-server@1.12.2(hono@4.5.11)':
     dependencies:
-      hono: 4.5.10
+      hono: 4.5.11
 
   '@playwright/browser-chromium@1.46.1':
     dependencies:
@@ -557,7 +557,7 @@ snapshots:
 
   '@types/ms@0.7.34': {}
 
-  '@types/node@20.16.3':
+  '@types/node@20.16.4':
     dependencies:
       undici-types: 6.19.8
 
@@ -652,7 +652,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  hono@4.5.10: {}
+  hono@4.5.11: {}
 
   inflight@1.0.6:
     dependencies:
@@ -801,7 +801,7 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  user-agents@1.1.314:
+  user-agents@1.1.316:
     dependencies:
       lodash.clonedeep: 4.5.0
 

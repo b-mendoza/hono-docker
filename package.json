@@ -11,15 +11,15 @@
   "dependencies": {
     "@hono/node-server": "1.12.2",
     "@playwright/browser-chromium": "1.46.1",
-    "hono": "4.5.10",
+    "hono": "4.5.11",
     "isbot": "5.1.17",
     "playwright": "1.46.1",
     "playwright-extra": "4.3.6",
     "puppeteer-extra-plugin-stealth": "2.11.2",
-    "user-agents": "1.1.314"
+    "user-agents": "1.1.316"
   },
   "devDependencies": {
-    "@types/node": "20.16.3",
+    "@types/node": "20.16.4",
     "@types/user-agents": "1.0.4",
     "esbuild": "0.23.1",
     "tsx": "4.19.0",
