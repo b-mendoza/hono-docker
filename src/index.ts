@@ -27,7 +27,7 @@ app.get('/', async (c) => {
 
   const browser = await chromiumWithExtra.launch({
     // headless: process.env['NODE_ENV'] === 'production',
-    headless: true,
+    headless: false,
 
     slowMo: 500,
   });
@@ -38,30 +38,36 @@ app.get('/', async (c) => {
       height: 1080,
       width: 1920,
     },
+    proxy: {
+      password: 'mvqzmua70clw',
+      server: 'http://brd.superproxy.io:22225',
+      username: 'brd-customer-hl_fbba4a56-zone-melonook_datacenter',
+    },
+    // javaScriptEnabled: false,
   });
 
   const page = await browserContext.newPage();
 
-  await page.goto('https://playwright.dev/');
+  await page.goto('https://www.browserscan.net/');
 
-  const titleLocator = page.getByRole('heading', {
-    level: 1,
-  });
+  // const titleLocator = page.getByRole('heading', {
+  //   level: 1,
+  // });
 
-  const titleTextContent = await titleLocator.textContent();
+  // const titleTextContent = await titleLocator.textContent();
 
-  await browserContext.close();
+  // await browserContext.close();
 
-  await browser.close();
+  // await browser.close();
 
   return c.json({
-    pageTitle: titleTextContent,
+    pageTitle: '',
   });
 });
 
 const port = Number.parseInt(process.env['PORT'] ?? '3000', 10);
 
-console.log(`Server is running on port ${port}`);
+console.log(`Server is running on port http://localhost:${port}`);
 
 serve({
   fetch: app.fetch,
