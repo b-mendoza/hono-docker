@@ -1,14 +1,16 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
-import UserAgent from 'user-agents';
 import { isbot } from 'isbot';
 import { chromium } from 'playwright';
 import { addExtra } from 'playwright-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import UserAgent from 'user-agents';
 
 const app = new Hono();
 
 app.get('/', async (c) => {
+  const { default: UserAgent } = await import('user-agents');
+
   const userAgent = new UserAgent({
     deviceCategory: 'desktop',
   });
@@ -21,7 +23,15 @@ app.get('/', async (c) => {
     );
   }
 
+  const { chromium } = await import('playwright');
+
+  const { addExtra } = await import('playwright-extra');
+
   const chromiumWithExtra = addExtra(chromium);
+
+  const { default: StealthPlugin } = await import(
+    'puppeteer-extra-plugin-stealth'
+  );
 
   chromiumWithExtra.use(StealthPlugin());
 
