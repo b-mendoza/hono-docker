@@ -1,55 +1,31 @@
 import { defineConfig } from '@rsbuild/core';
-// import { pluginNodePolyfill } from '@rsbuild/plugin-node-polyfill';
+import path from 'node:path';
 
 export default defineConfig({
   output: {
+    cleanDistPath: true,
+    minify: false,
     target: 'node',
   },
-  // environments: {
-  //   web: {
-  //     output: {
-  //       target: 'web',
-  //     },
-  //   },
-  //   node: {
-  //     source: {
-  //       entry: {
-  //         index: './src/index.server.ts',
-  //       },
-  //     },
-  //     output: {
-  //       // Use 'node' target for the Node.js outputs
-  //       target: 'node',
-  //     },
-  //   },
-  // },
-  source: {
-    entry: {
-      index: {
-        import: './src/index.ts',
+  tools: {
+    rspack: {
+      experiments: {
+        outputModule: true,
+      },
+      output: {
+        chunkFormat: 'module',
         library: {
-          // set the library type to `esm` to generate esm output
           type: 'module',
+        },
+      },
+      resolve: {
+        alias: {
+          electron: path.resolve(
+            __dirname,
+            'node_modules/.pnpm/playwright-core@1.47.0/node_modules/playwright-core/lib/server/electron/electron.js',
+          ),
         },
       },
     },
   },
-  tools: {
-    rspack: {
-      output: {
-        chunkFormat: 'module',
-        // library: {
-        //   type: 'module',
-        // },
-      },
-      experiments: {
-        outputModule: true,
-        // topLevelAwait: true,
-      },
-      // optimization: {
-      //   usedExports: false,
-      // },
-    },
-  },
-  // plugins: [pluginNodePolyfill()],
 });
