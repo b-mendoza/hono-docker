@@ -5,10 +5,16 @@ import type { HttpBindings } from '@hono/node-server';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { isbot } from 'isbot';
-import * as http from 'node:http';
 import { chromium } from 'playwright';
 import { addExtra } from 'playwright-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import UserAgent from 'user-agents';
+
+const PORT = Number.parseInt(process.env['PORT'] ?? '3000', 10);
+
+const chromiumWithExtra = addExtra(chromium);
+
+chromiumWithExtra.use(StealthPlugin());
 
 type HonoBindings = HttpBindings & {};
 
@@ -16,10 +22,8 @@ const app = new Hono<{
   Bindings: HonoBindings;
 }>();
 
-const PORT = Number.parseInt(process.env['PORT'] ?? '3000', 10);
-
 app.get('/', async (c) => {
-  const { default: UserAgent } = await import('user-agents');
+  // const { default: UserAgent } = await import('user-agents');
 
   const userAgent = new UserAgent({
     deviceCategory: 'desktop',
@@ -32,14 +36,6 @@ app.get('/', async (c) => {
       'Generated User Agent was identified as a bot. Please use a different User Agent.',
     );
   }
-
-  const chromiumWithExtra = addExtra(chromium);
-
-  // const { default: StealthPlugin } = await import(
-  //   'puppeteer-extra-plugin-stealth'
-  // );
-
-  chromiumWithExtra.use(StealthPlugin());
 
   const browser = await chromiumWithExtra.launch({
     // headless: process.env['NODE_ENV'] === 'production',
@@ -81,13 +77,12 @@ app.get('/', async (c) => {
   });
 });
 
-// @ts-expect-error -- Hono's `serve` function is using a union type for the `serve` function, not a generic
-const server: http.Server = serve({
-  createServer: http.createServer,
-  fetch: app.fetch,
-  port: PORT,
-});
-
-server.on('listening', () => {
-  console.log(`Server is listening on port http://localhost:${PORT}`);
-});
+serve(
+  {
+    fetch: app.fetch,
+    port: PORT,
+  },
+  (info) => {
+    console.log(`Server is listening on port http://localhost:${info.port}`);
+  },
+);
