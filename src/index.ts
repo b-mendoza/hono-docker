@@ -1,12 +1,28 @@
+// import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+// import UserAgent from 'user-agents';
+
+import type { HttpBindings } from '@hono/node-server';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { isbot } from 'isbot';
 import { chromium } from 'playwright';
-// import { addExtra } from 'playwright-extra';
+import { addExtra } from 'playwright-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import UserAgent from 'user-agents';
 
-const app = new Hono();
+console.log(StealthPlugin().availableEvasions);
+
+const PORT = Number.parseInt(process.env['PORT'] ?? '3000', 10);
+
+const chromiumWithExtra = addExtra(chromium);
+
+chromiumWithExtra.use(StealthPlugin());
+
+type HonoBindings = HttpBindings & {};
+
+const app = new Hono<{
+  Bindings: HonoBindings;
+}>();
 
 app.get('/', async (c) => {
   // const { default: UserAgent } = await import('user-agents');
@@ -23,20 +39,8 @@ app.get('/', async (c) => {
     );
   }
 
-  // const { chromium } = await import('playwright');
-
-  const { chromium } = await import('playwright-extra');
-  // const { chromium } = await import('playwright-extra');
-
-  // const chromiumWithExtra = addExtra(chromium);
-
-  // const { default: StealthPlugin } = await import(
-  //   'puppeteer-extra-plugin-stealth'
-  // );
-
-  const browser = await chromium.use(StealthPlugin()).launch({
-    // const browser = await chromium.launch({
-    headless: process.env['NODE_ENV'] === 'production',
+  const browser = await chromiumWithExtra.launch({
+    headless: true,
     slowMo: 500,
   });
 
@@ -67,11 +71,12 @@ app.get('/', async (c) => {
   });
 });
 
-const port = Number.parseInt(process.env['PORT'] ?? '4000', 10);
-
-console.log(`Server is running on port ${port}`);
-
-serve({
-  fetch: app.fetch,
-  port,
-});
+serve(
+  {
+    fetch: app.fetch,
+    port: PORT,
+  },
+  (info) => {
+    console.log(`Server is listening on port http://localhost:${info.port}`);
+  },
+);
