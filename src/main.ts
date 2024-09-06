@@ -5,16 +5,11 @@ import type { HttpBindings } from '@hono/node-server';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import { isbot } from 'isbot';
-import { chromium } from 'playwright';
-import { addExtra } from 'playwright-extra';
+import { chromium as chromiumWithExtra } from 'playwright-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import UserAgent from 'user-agents';
 
 const PORT = Number.parseInt(process.env['PORT'] ?? '3000', 10);
-
-const chromiumWithExtra = addExtra(chromium);
-
-chromiumWithExtra.use(StealthPlugin());
 
 type HonoBindings = HttpBindings & {};
 
@@ -37,7 +32,7 @@ app.get('/', async (c) => {
     );
   }
 
-  const browser = await chromiumWithExtra.launch({
+  const browser = await chromiumWithExtra.use(StealthPlugin()).launch({
     // headless: process.env['NODE_ENV'] === 'production',
 
     headless: true,
