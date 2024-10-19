@@ -1,4 +1,4 @@
-FROM node:20.17.0-bullseye-slim AS base
+FROM node:20.18.0-bookworm-slim AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -19,11 +19,11 @@ FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile && \
     pnpm run build
 
-FROM ubuntu:noble-20240801
+FROM debian:bookworm-slim
 
 WORKDIR /app
 
-COPY --from=base /usr/local/bin /usr/local/bin
+COPY --from=base /usr/local/bin/node /usr/local/bin/node
 COPY --from=base /app/package.json /app/package.json
 
 # COPY --from=base /usr/local/lib/node_modules /usr/local/lib/node_modules
@@ -40,6 +40,6 @@ RUN ln -s /usr/local/bin/node /usr/bin/node
 
 # ENV PATH="/usr/local/bin:${PATH}"
 
-EXPOSE $PORT
+EXPOSE 3000
 
 CMD ["node", "./dist/index.js"]
