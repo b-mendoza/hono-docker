@@ -4,10 +4,11 @@
 import type { HttpBindings } from '@hono/node-server';
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
-import { isbot } from 'isbot';
-import { chromium as chromiumWithExtra } from 'playwright-extra';
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
-import UserAgent from 'user-agents';
+// import { isbot } from 'isbot';
+import { addExtra } from 'playwright-extra';
+// import { chromium } from 'playwright';
+// import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+// import UserAgent from 'user-agents';
 
 const PORT = Number.parseInt(process.env['PORT'] ?? '3000', 10);
 
@@ -18,7 +19,7 @@ const app = new Hono<{
 }>();
 
 app.get('/', async (c) => {
-  // const { default: UserAgent } = await import('user-agents');
+  const { default: UserAgent } = await import('user-agents');
 
   const userAgent = new UserAgent({
     deviceCategory: 'desktop',
@@ -26,13 +27,21 @@ app.get('/', async (c) => {
 
   const userAgentValue = userAgent.toString();
 
+  const { isbot } = await import('isbot');
+
   if (isbot(userAgentValue)) {
     throw new Error(
       'Generated User Agent was identified as a bot. Please use a different User Agent.',
     );
   }
 
-  const browser = await chromiumWithExtra.use(StealthPlugin()).launch({
+  const { chromium } = await import('playwright');
+
+  const { default: StealthPlugin } = await import(
+    'puppeteer-extra-plugin-stealth'
+  );
+
+  const browser = await addExtra(chromium).use(StealthPlugin()).launch({
     // headless: process.env['NODE_ENV'] === 'production',
 
     headless: true,

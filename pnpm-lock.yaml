@@ -14,9 +14,6 @@ importers:
       '@hono/node-server':
         specifier: 1.13.2
         version: 1.13.2(hono@4.6.3)
-      '@playwright/browser-chromium':
-        specifier: 1.48.0
-        version: 1.48.0
       hono:
         specifier: 4.6.3
         version: 4.6.3
@@ -42,6 +39,9 @@ importers:
         specifier: 1.1.325
         version: 1.1.325
     devDependencies:
+      '@playwright/browser-chromium':
+        specifier: 1.48.0
+        version: 1.48.0
       '@types/node':
         specifier: 20.16.11
         version: 20.16.11

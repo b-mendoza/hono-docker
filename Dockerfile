@@ -15,7 +15,7 @@
 # - Reduce the size of the final image
 # - Always pin the versions of dependencies, images, and tools
 
-FROM node:20.17.0-bookworm-slim AS base
+FROM node:20.18.0-bookworm-slim AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
