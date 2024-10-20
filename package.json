@@ -11,13 +11,13 @@
   "dependencies": {
     "@hono/node-server": "1.13.2",
     "@playwright/browser-chromium": "1.48.1",
+    "debug": "4.3.7",
     "hono": "4.6.5",
     "isbot": "5.1.17",
     "playwright": "1.48.1",
+    "playwright-core": "1.48.1",
     "playwright-extra": "4.3.6",
     "puppeteer-extra-plugin-stealth": "2.11.2",
-    "puppeteer-extra-plugin-user-data-dir": "2.4.1",
-    "puppeteer-extra-plugin-user-preferences": "2.4.1",
     "user-agents": "1.1.332"
   },
   "devDependencies": {

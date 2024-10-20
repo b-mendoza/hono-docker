@@ -27,5 +27,8 @@ export default defineConfig({
   ssr: {
     external: nodeExternals,
     noExternal: process.env.NODE_ENV === 'production' ? [/.*/] : undefined,
+    optimizeDeps: {
+      exclude: ['chromium-bidi'],
+    },
   },
 });
