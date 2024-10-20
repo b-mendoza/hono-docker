@@ -1,9 +1,19 @@
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from '@rsbuild/core';
 import path from 'node:path';
 
+const localDirname = dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig({
+  source: {
+    entry: {
+      index: './src/index.ts',
+    },
+  },
   output: {
     cleanDistPath: true,
+    externals: [/chromium-bidi\/lib\/cjs\/.*/, 'electron'],
     minify: false,
     target: 'node',
   },
@@ -16,14 +26,6 @@ export default defineConfig({
         chunkFormat: 'module',
         library: {
           type: 'module',
-        },
-      },
-      resolve: {
-        alias: {
-          electron: path.resolve(
-            __dirname,
-            'node_modules/.pnpm/playwright-core@1.47.0/node_modules/playwright-core/lib/server/electron/electron.js',
-          ),
         },
       },
     },
