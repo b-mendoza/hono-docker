@@ -9,23 +9,23 @@
     "start": "node ./dist/index.js"
   },
   "dependencies": {
-    "@hono/node-server": "1.12.2",
-    "@playwright/browser-chromium": "1.47.0",
-    "hono": "4.5.11",
+    "@hono/node-server": "1.13.2",
+    "@playwright/browser-chromium": "1.48.1",
+    "hono": "4.6.5",
     "isbot": "5.1.17",
-    "playwright": "1.47.0",
+    "playwright": "1.48.1",
     "playwright-extra": "4.3.6",
     "puppeteer-extra-plugin-stealth": "2.11.2",
     "puppeteer-extra-plugin-user-data-dir": "2.4.1",
     "puppeteer-extra-plugin-user-preferences": "2.4.1",
-    "user-agents": "1.1.318"
+    "user-agents": "1.1.332"
   },
   "devDependencies": {
-    "@rsbuild/core": "1.0.1-rc.5",
-    "@types/node": "20.16.5",
+    "@rsbuild/core": "1.0.15",
+    "@types/node": "22.7.7",
     "@types/user-agents": "1.0.4",
-    "tsx": "4.19.0",
-    "typescript": "5.5.4"
+    "tsx": "4.19.1",
+    "typescript": "5.6.3"
   },
   "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228",
   "engines": {
